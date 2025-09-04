@@ -5,9 +5,11 @@ import { signUpUser } from '../../src/ui/actions/auth/signUpUser';
 import { createNewArticle } from '../../src/ui/actions/article/createNewArticle';
 import { ViewArticlePage } from '../../src/ui/pages/article/ViewArticlePage';
 import { EditArticlePage } from '../../src/ui/pages/article/EditArticlePage';
+import { CreateArticlePage } from '../../src/ui/pages/article/CreateArticlePage';
 
 export const test = base.extend<{
-  createArticlePage: { article: any; responseBody: any };
+  createArticlePage: CreateArticlePage;
+  createdArticle: { article: any; responseBody: any };
   viewArticlePage: ViewArticlePage;
   editArticlePage: EditArticlePage;
   articleWithoutTags: { article: any };
@@ -15,7 +17,12 @@ export const test = base.extend<{
   articleWithTwoTags: { article: any };
   logger: any;
 }>({
-  createArticlePage: async ({ page, logger }, use) => {
+  createArticlePage: async ({ page }, use) => {
+    const createArticlePage = new CreateArticlePage(page);
+    await use(createArticlePage);
+  },
+
+  createdArticle: async ({ page, logger }, use) => {
     const user = generateNewUserData(logger);
     const article = generateNewArticleData(logger, 2);
 

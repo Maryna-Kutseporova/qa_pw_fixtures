@@ -10,14 +10,12 @@ export class ViewArticlePage {
   }
 
   async assertArticleTitleIsVisible(title) {
-    await test.step(`Assert the article has correct title'`, async () => {
-      await expect(this.articleTitleHeader).toContainText(title);
-    });
+    await expect(this.articleTitleHeader).toContainText(title);
   }
 
-  async assertArticleTextIsVisible(text) {
+  async assertArticleBodyIsVisible(body) {
     await test.step(`Assert the article has correct text`, async () => {
-      await expect(this.page.getByText(text)).toBeVisible();
+      await expect(this.page.getByText(body)).toBeVisible();
     });
   }
   async clickEditArticle() {

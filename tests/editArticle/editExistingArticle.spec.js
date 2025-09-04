@@ -6,11 +6,11 @@ import {
 } from '../../src/ui/constants/articleErrorMessages';
 
 test('Edit the article title for the existing article', async ({
-  createArticlePage,
+  createdArticle,
   viewArticlePage,
   editArticlePage,
 }) => {
-  void createArticlePage;
+  void createdArticle;
   const newTitle = 'Changed title';
 
   await viewArticlePage.clickEditArticle();
@@ -20,11 +20,11 @@ test('Edit the article title for the existing article', async ({
 });
 
 test('Edit the article description for the existing article', async ({
-  createArticlePage,
+  createdArticle,
   viewArticlePage,
   editArticlePage,
 }) => {
-  void createArticlePage;
+  void createdArticle;
   const newDesc = 'Changed description';
 
   await viewArticlePage.clickEditArticle();
@@ -33,26 +33,26 @@ test('Edit the article description for the existing article', async ({
   await editArticlePage.assertArticleDescriptionContainsNewDesc(newDesc);
 });
 
-test('Edit the article text for the existing article', async ({
-  createArticlePage,
+test('Edit the article body for the existing article', async ({
+  createdArticle,
   viewArticlePage,
   editArticlePage,
 }) => {
-  void createArticlePage;
+  void createdArticle;
   const newText = 'Changed text';
 
   await viewArticlePage.clickEditArticle();
-  await editArticlePage.editArticleText(newText);
+  await editArticlePage.editArticleBody(newText);
   await viewArticlePage.clickEditArticle();
-  await editArticlePage.assertArticleTextContainsNewText(newText);
+  await editArticlePage.assertArticleBodyContainsNewText(newText);
 });
 
 test('Add the tag for the existing article without tags', async ({
-  createArticlePage,
+  createdArticle,
   viewArticlePage,
   editArticlePage,
 }) => {
-  void createArticlePage;
+  void createdArticle;
   const newTag = 'New tag';
 
   await viewArticlePage.clickEditArticle();
@@ -61,11 +61,11 @@ test('Add the tag for the existing article without tags', async ({
 });
 
 test('Add the tag for the existing article with tags', async ({
-  createArticlePage,
+  createdArticle,
   viewArticlePage,
   editArticlePage,
 }) => {
-  void createArticlePage;
+  void createdArticle;
   const newTag = 'New tag';
 
   await viewArticlePage.clickEditArticle();
@@ -76,10 +76,10 @@ test('Add the tag for the existing article with tags', async ({
 test('Remove article tag for existing article with tag', async ({
   viewArticlePage,
   editArticlePage,
-  createArticlePage,
+  createdArticle,
 }) => {
-  void createArticlePage;
-  const { responseBody } = createArticlePage;
+  void createdArticle;
+  const { responseBody } = createdArticle;
   const existingTag = responseBody.article.tagList[0];
   await viewArticlePage.clickEditArticle();
   await editArticlePage.removeArticleTag(existingTag);
@@ -88,22 +88,22 @@ test('Remove article tag for existing article with tag', async ({
 });
 
 test('Remove the article title for the existing article', async ({
-  createArticlePage,
+  createdArticle,
   viewArticlePage,
   editArticlePage,
 }) => {
-  void createArticlePage;
+  void createdArticle;
   await viewArticlePage.clickEditArticle();
   await editArticlePage.editArticleTitle('');
   await editArticlePage.assertErrorMessageContainsText(TITLE_CANNOT_BE_EMPTY);
 });
 
 test('Remove the article desc for the existing article', async ({
-  createArticlePage,
+  createdArticle,
   viewArticlePage,
   editArticlePage,
 }) => {
-  void createArticlePage;
+  void createdArticle;
   await viewArticlePage.clickEditArticle();
   await editArticlePage.editArticleDescription('');
   await editArticlePage.assertErrorMessageContainsText(
@@ -112,12 +112,12 @@ test('Remove the article desc for the existing article', async ({
 });
 
 test('Remove the article body for the existing article', async ({
-  createArticlePage,
+  createdArticle,
   viewArticlePage,
   editArticlePage,
 }) => {
-  void createArticlePage;
+  void createdArticle;
   await viewArticlePage.clickEditArticle();
-  await editArticlePage.editArticleText('');
+  await editArticlePage.editArticleBody('');
   await editArticlePage.assertErrorMessageContainsText(BODY_CANNOT_BE_EMPTY);
 });

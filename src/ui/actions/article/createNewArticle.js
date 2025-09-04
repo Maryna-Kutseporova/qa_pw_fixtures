@@ -14,6 +14,6 @@ export async function createNewArticle(page, article) {
     await createArticlePage.fillArticleFields(article);
 
     await viewArticlePage.assertArticleTitleIsVisible(article.title);
-    await viewArticlePage.assertArticleTextIsVisible(article.text);
+    await viewArticlePage.assertArticleBodyIsVisible(article.body);
   });
 }

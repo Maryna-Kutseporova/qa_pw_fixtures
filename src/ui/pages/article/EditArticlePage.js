@@ -7,7 +7,7 @@ export class EditArticlePage {
     this.articleDescription = page.getByPlaceholder(
       `What's this article about?`,
     );
-    this.articleText = page.getByPlaceholder('Write your article (in');
+    this.articleBody = page.getByPlaceholder('Write your article (in');
     this.articleTag = page.getByPlaceholder('Enter tags');
     this.updateArticleBtn = page.getByRole('button', {
       name: 'Update Article',
@@ -26,9 +26,9 @@ export class EditArticlePage {
     });
   }
 
-  async assertArticleText(text) {
+  async assertArticleBody(body) {
     await test.step(`Assert the article has correct text'`, async () => {
-      await expect(this.page.getByText(text)).toBeVisible();
+      await expect(this.page.getByText(body)).toBeVisible();
     });
   }
   async editArticleTitle(title) {
@@ -38,9 +38,9 @@ export class EditArticlePage {
     });
   }
 
-  async editArticleText(text) {
+  async editArticleBody(body) {
     await test.step(`Edit the article text'`, async () => {
-      await this.articleText.fill(text);
+      await this.articleBody.fill(body);
       await this.updateArticleBtn.click();
     });
   }
@@ -65,9 +65,9 @@ export class EditArticlePage {
     });
   }
 
-  async assertArticleTextContainsNewText(text) {
+  async assertArticleBodyContainsNewText(body) {
     await test.step(`Assert article has new text after changes`, async () => {
-      await expect(this.articleText).toHaveValue(text);
+      await expect(this.articleBody).toHaveValue(body);
     });
   }
 
