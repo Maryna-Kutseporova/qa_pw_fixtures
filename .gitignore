@@ -4,3 +4,8 @@ node_modules/
 /blob-report/
 /playwright/.cache/
 ./vscode
+.DS_Store
+src/.DS_Store
+src/ui/.DS_Store
+src/ui/actions/.DS_Store
+tests/.DS_Store
